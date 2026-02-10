@@ -20,26 +20,11 @@ pub fn lex(input: &str) -> Vec<Token> {
                 tokens.push(Token::Number(num))
             }
 
-            '+' => {
-                chars.next();
-                tokens.push(Token::Plus);
-            }
-
-            '*' => {
-                chars.next();
-                tokens.push(Token::Mul);
-            }
-
-            '(' => {
-                chars.next();
-                tokens.push(Token::LParen);
-            }
-
-            ')' => {
-                chars.next();
-                tokens.push(Token::RParen);
-            }
-
+            '+' => {chars.next(); tokens.push(Token::Plus);}
+            '*' => {chars.next(); tokens.push(Token::Mul);}
+            '(' => {chars.next(); tokens.push(Token::LParen);}
+            ')' => {chars.next(); tokens.push(Token::RParen);}
+            c if c.is_whitespace() => { chars.next(); }
             _ => {panic!("Unexpected character in the parser: {}", c);}
         }
     }
